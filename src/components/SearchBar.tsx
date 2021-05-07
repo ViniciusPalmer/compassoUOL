@@ -8,6 +8,8 @@ import { LoadingScreen } from "./LoadingScreen";
 import { SearchResult } from "./SearchResult";
 import { RepoCards } from "./RepoCards";
 import { StarredCards } from "./StarredCards";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ILastSearchUser {
   login: string;
@@ -31,30 +33,36 @@ export function SearchBar() {
     activeRepo,
   } = useContext(RepoConsultingContext);
 
+  function execTask(res) {
+    const templateRes: ILastSearchUser = {
+      login: res.data.login,
+      name: res.data.name,
+      avatar_url: res.data.avatar_url,
+      type: res.data.type,
+      mail: res.data.email,
+      followers: res.data.followers,
+      company: res.data.company,
+    };
+    insertNewSearch(templateRes);
+  }
+
   async function serchOnGit() {
     repoIsOpen && activeRepo();
     starredIsOpen && activeStarred;
 
     if (dirName !== "") {
       setIsLoading(true);
-      const res = await axios.get(`https://api.github.com/users/${dirName}`);
 
-      const templateRes: ILastSearchUser = {
-        login: res.data.login,
-        name: res.data.name,
-        avatar_url: res.data.avatar_url,
-        type: res.data.type,
-        mail: res.data.email,
-        followers: res.data.followers,
-        company: res.data.company,
-      };
-
-      insertNewSearch(templateRes);
+      const res = await axios
+        .get(`https://api.github.com/users/${dirName}`)
+        .then((res) => execTask(res))
+        .catch(() => toast.error("Ops cadastro não encontrado"));
       setIsLoading(false);
     }
   }
   return (
     <>
+      <ToastContainer />
       <div className={styles.SearchBarContainer}>
         {isLoading && <LoadingScreen />}
         <div>
