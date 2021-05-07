@@ -23,10 +23,12 @@ interface IOwnerStarred {
 export function SearchResult() {
   const {
     lastSearch,
+    repoStorage,
     activeStarred,
     activeRepo,
     insertNewRepoStorage,
     insertNewStarredStorage,
+    repoIsOpen,
   } = useContext(RepoConsultingContext);
 
   async function repoSearch() {

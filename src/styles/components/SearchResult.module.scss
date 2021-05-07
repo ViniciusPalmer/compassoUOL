@@ -30,7 +30,7 @@
   box-shadow: rgba(0, 0, 0, 0.61) 0px 1px 3px;
 }
 
-.SearchResultContainer div {
+.SearchResultContainer > div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

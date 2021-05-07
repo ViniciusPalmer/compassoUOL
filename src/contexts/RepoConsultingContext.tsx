@@ -124,11 +124,13 @@ export function RepoConsultingProvider({
   }
 
   function activeRepo() {
-    setRepoisOpen(true);
+    setStarredIsOpen(false);
+    setRepoisOpen(!repoIsOpen);
   }
 
   function activeStarred() {
-    setStarredIsOpen(true);
+    setRepoisOpen(false);
+    setStarredIsOpen(!starredIsOpen);
   }
 
   async function insertNewRepoStorage(data: ISearchRepo[]) {

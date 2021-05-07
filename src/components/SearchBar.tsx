@@ -6,6 +6,8 @@ import { BsSearch } from "react-icons/bs";
 import styles from "../styles/components/SearchBar.module.scss";
 import { LoadingScreen } from "./LoadingScreen";
 import { SearchResult } from "./SearchResult";
+import { RepoCards } from "./RepoCards";
+import { StarredCards } from "./StarredCards";
 
 interface ILastSearchUser {
   login: string;
@@ -20,9 +22,19 @@ interface ILastSearchUser {
 export function SearchBar() {
   const [isLoading, setIsLoading] = useState(false);
   const [dirName, setDirName] = useState("");
-  const { lastSearch, insertNewSearch } = useContext(RepoConsultingContext);
+  const {
+    lastSearch,
+    insertNewSearch,
+    repoIsOpen,
+    starredIsOpen,
+    activeStarred,
+    activeRepo,
+  } = useContext(RepoConsultingContext);
 
   async function serchOnGit() {
+    repoIsOpen && activeRepo();
+    starredIsOpen && activeStarred;
+
     if (dirName !== "") {
       setIsLoading(true);
       const res = await axios.get(`https://api.github.com/users/${dirName}`);
@@ -42,18 +54,22 @@ export function SearchBar() {
     }
   }
   return (
-    <div className={styles.SearchBarContainer}>
-      {isLoading && <LoadingScreen />}
-      <div>
-        <input
-          type="text"
-          placeholder="Pesquise um perfil do GitHub"
-          onChange={(e) => setDirName(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && serchOnGit()}
-        />
-        <BsSearch size={15} color={"white"} onClick={serchOnGit} />
+    <>
+      <div className={styles.SearchBarContainer}>
+        {isLoading && <LoadingScreen />}
+        <div>
+          <input
+            type="text"
+            placeholder="Pesquise um perfil do GitHub"
+            onChange={(e) => setDirName(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && serchOnGit()}
+          />
+          <BsSearch size={15} color={"white"} onClick={serchOnGit} />
+        </div>
+        {lastSearch && <SearchResult />}
+        <RepoCards />
+        <StarredCards />
       </div>
-      {lastSearch && <SearchResult />}
-    </div>
+    </>
   );
 }

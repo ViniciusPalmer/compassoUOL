@@ -15,7 +15,7 @@ $minHeight: 5rem;
   align-items: center;
 }
 
-.SearchBarContainer div {
+.SearchBarContainer > div {
   width: 100%;
   height: 100%;
 
@@ -25,7 +25,7 @@ $minHeight: 5rem;
   align-items: center;
 }
 
-.SearchBarContainer div input {
+.SearchBarContainer > div input {
   background: none;
   border: 1px solid;
   border-radius: 10px;
@@ -41,13 +41,13 @@ $minHeight: 5rem;
   font-size: 1.2rem;
 }
 
-.SearchBarContainer div input:focus {
+.SearchBarContainer > div input:focus {
   outline: none;
   border-color: $babyBlue;
 }
 
-.SearchBarContainer div > svg {
+.SearchBarContainer > div > svg {
   margin: -35px;
-  cursor: wait;
+  cursor: pointer;
   transition: 0.8s linear;
 }
