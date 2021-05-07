@@ -1,0 +1,10 @@
+repositores
+starred
+logout
+session
+retornar a consulta
+
+
+tratar retornos negativos api
+alert error
+arrancar code do URL
