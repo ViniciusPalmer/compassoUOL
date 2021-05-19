@@ -113,10 +113,12 @@ export function SearchResult() {
         </div>
 
         <div>
-          <button onClick={repoSearch}>Repositores</button>
-        </div>
-        <div>
-          <button onClick={starredSearch}>Starred</button>
+          <div>
+            <button onClick={repoSearch}>Repositores</button>
+          </div>
+          <div>
+            <button onClick={starredSearch}>Starred</button>
+          </div>
         </div>
       </div>
     </div>
