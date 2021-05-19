@@ -69,6 +69,7 @@ RepoCardsContainer::-webkit-scrollbar.-thumb:hover {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  flex-wrap: wrap;
   margin: 5px;
 
   width: 30%;
@@ -76,4 +77,14 @@ RepoCardsContainer::-webkit-scrollbar.-thumb:hover {
 
 .RepositoriesListDescription {
   width: 36%;
+}
+
+@media (max-width: 720px) {
+  .RepositoriesImg {
+    display: none;
+  }
+
+  .RepositoriesListName {
+    width: 50%;
+  }
 }

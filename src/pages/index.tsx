@@ -14,9 +14,6 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Inicio | Compasso.Uol</title>
-      </Head>
       <div>{isLogged ? <SearchBar /> : <LoginWithGithub />}</div>
     </div>
   );
